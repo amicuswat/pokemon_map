@@ -59,14 +59,18 @@ def show_all_pokemons(request):
 
 
 def show_pokemon(request, pokemon_id):
-    pokemon = Pokemon.objects.get(id=pokemon_id)
+
+    try:
+        pokemon = Pokemon.objects.get(id=pokemon_id)
+    except Pokemon.DoesNotExist:
+        return HttpResponseNotFound('<h1>Такой покемон не найден</h1>')
+
     entities = PokemonEntity.objects.filter(pokemon_id=pokemon_id)
 
-
-    if pokemon:
-        print(pokemon.title)
-    else:
-        return HttpResponseNotFound('<h1>Такой покемон не найден</h1>')
+    try:
+        child_pokemon = Pokemon.objects.get(parent_id=pokemon.id)
+    except Pokemon.DoesNotExist:
+        child_pokemon = None
 
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
     if entities:
@@ -95,6 +99,15 @@ def show_pokemon(request, pokemon_id):
         }
 
         pokemon_data['previous_evolution'] = previous_evolution
+
+    if child_pokemon:
+        next_evolution = {
+            'img_url': request.build_absolute_uri(child_pokemon.photo.url),
+            'title_ru': child_pokemon.title,
+            'pokemon_id': child_pokemon.id
+        }
+
+        pokemon_data['next_evolution'] = next_evolution
 
     return render(request, 'pokemon.html', context={
         'map': folium_map._repr_html_(), 'pokemon': pokemon_data
