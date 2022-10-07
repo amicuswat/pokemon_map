@@ -9,6 +9,8 @@ class Pokemon(models.Model):
     description = models.TextField(blank=True, null=True)
     photo = models.ImageField(upload_to='pokemons', blank=True, null=True)
 
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True)
+
     def __str__(self):
         return f"{self.title}"
 
