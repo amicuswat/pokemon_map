@@ -32,6 +32,6 @@ class PokemonEntity(models.Model):
     stamina = models.IntegerField(verbose_name='выносливость', default=1)
 
     pokemon = models.ForeignKey(Pokemon, verbose_name='покемон',
-                                on_delete=models.CASCADE, null=True)
+                                on_delete=models.CASCADE)
 
 
