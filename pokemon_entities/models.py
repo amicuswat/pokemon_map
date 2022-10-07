@@ -15,8 +15,10 @@ class Pokemon(models.Model):
     parent = models.ForeignKey('self', verbose_name='Эволюционирует из',
                                on_delete=models.CASCADE, blank=True, null=True)
 
+
     def __str__(self):
         return f"{self.title}"
+
 
 class PokemonEntity(models.Model):
     lat = models.FloatField(verbose_name='широта')
@@ -33,5 +35,3 @@ class PokemonEntity(models.Model):
 
     pokemon = models.ForeignKey(Pokemon, verbose_name='покемон',
                                 on_delete=models.CASCADE)
-
-
