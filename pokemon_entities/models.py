@@ -3,12 +3,12 @@ from django.db import models
 class Pokemon(models.Model):
     title = models.CharField(verbose_name='название', max_length=200)
     title_en = models.CharField(verbose_name='название анг', max_length=200,
-                                blank=True, null=True)
+                                blank=True)
     title_jp = models.CharField(verbose_name='название яп', max_length=200,
-                                blank=True, null=True)
+                                blank=True)
 
     description = models.TextField(verbose_name='описание',
-                                   blank=True, null=True)
+                                   blank=True)
     photo = models.ImageField(verbose_name='изображение', upload_to='pokemons')
 
     parent = models.ForeignKey('self', verbose_name='Эволюционирует из',
