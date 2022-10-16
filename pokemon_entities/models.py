@@ -28,11 +28,11 @@ class PokemonEntity(models.Model):
     appear_at = models.DateTimeField(verbose_name='появится', null=True)
     disappear_at = models.DateTimeField(verbose_name='скроектся', null=True)
 
-    level = models.IntegerField(verbose_name='уровень', default=0)
-    health = models.IntegerField(verbose_name='здоровье', default=100)
-    strength = models.IntegerField(verbose_name='сила', default=1)
-    defense = models.IntegerField(verbose_name='защита', default=1)
-    stamina = models.IntegerField(verbose_name='выносливость', default=1)
+    level = models.IntegerField(verbose_name='уровень')
+    health = models.IntegerField(verbose_name='здоровье')
+    strength = models.IntegerField(verbose_name='сила')
+    defense = models.IntegerField(verbose_name='защита')
+    stamina = models.IntegerField(verbose_name='выносливость')
 
     pokemon = models.ForeignKey(Pokemon, verbose_name='покемон',
                                 related_name="pokemon_entity",
