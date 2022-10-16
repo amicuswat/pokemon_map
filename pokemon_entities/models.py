@@ -9,8 +9,7 @@ class Pokemon(models.Model):
 
     description = models.TextField(verbose_name='описание',
                                    blank=True, null=True)
-    photo = models.ImageField(verbose_name='изображение', upload_to='pokemons',
-                              blank=True, null=True)
+    photo = models.ImageField(verbose_name='изображение', upload_to='pokemons')
 
     parent = models.ForeignKey('self', verbose_name='Эволюционирует из',
                                on_delete=models.CASCADE, blank=True, null=True)
