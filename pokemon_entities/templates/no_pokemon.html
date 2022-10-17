@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Pokemon Go map</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="shortcut icon" href="https://assets.pokemon.com/static2/_ui/img/favicon.ico">
+</head>
+<body>
+  <div class="container">
+    <ul class="nav" style="background-color: #e3f2fd;">
+      <li class="nav-item">
+        <a class="nav-link active" href="{% url "mainpage" %}">На главную</a>
+      </li>
+    </ul>
+    <div class="d-flex mt-5 row">
+      <div class="m-2 ml-4 col-11 col-sm-8 col-lg-8 col-xl-8">
+        <h1>{{message}}</h1>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

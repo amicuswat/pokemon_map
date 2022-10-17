@@ -58,7 +58,10 @@ def show_pokemon(request, pokemon_id):
     try:
         pokemon = Pokemon.objects.get(id=pokemon_id)
     except Pokemon.DoesNotExist:
-        return HttpResponseNotFound('<h1>Такой покемон не найден</h1>')
+        message = "Такого покемона не существует :("
+
+        return render(request, 'no_pokemon.html',
+                      context={'message': message})
 
     entities = PokemonEntity.objects.filter(pokemon_id=pokemon_id,
                                             appear_at__lte=localtime(),
