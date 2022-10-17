@@ -67,7 +67,7 @@ def show_pokemon(request, pokemon_id):
                                             disappear_at__gte=localtime())
 
     try:
-        child_pokemon = Pokemon.objects.get(parent_id=pokemon.id)
+        child_pokemon = pokemon.child_pokemon.get()
     except Pokemon.DoesNotExist:
         child_pokemon = None
 
