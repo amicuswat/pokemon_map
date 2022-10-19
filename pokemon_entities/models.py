@@ -12,7 +12,7 @@ class Pokemon(models.Model):
     photo = models.ImageField(verbose_name='изображение', upload_to='pokemons')
 
     parent = models.ForeignKey('self', verbose_name='Эволюционирует из',
-                               related_name="child_pokemon",
+                               related_name="child_pokemons",
                                on_delete=models.CASCADE,
                                blank=True, null=True)
 
@@ -35,5 +35,5 @@ class PokemonEntity(models.Model):
     stamina = models.IntegerField(verbose_name='выносливость')
 
     pokemon = models.ForeignKey(Pokemon, verbose_name='покемон',
-                                related_name="pokemon_entity",
+                                related_name="pokemon_entities",
                                 on_delete=models.CASCADE)

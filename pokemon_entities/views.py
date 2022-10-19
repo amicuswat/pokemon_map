@@ -62,11 +62,11 @@ def show_pokemon(request, pokemon_id):
         return render(request, 'no_pokemon.html',
                       context={'message': message})
 
-    entities = pokemon.pokemon_entity.filter(appear_at__lte=localtime(),
+    entities = pokemon.pokemon_entities.filter(appear_at__lte=localtime(),
                                             disappear_at__gte=localtime())
 
     try:
-        child_pokemon = pokemon.child_pokemon.get()
+        child_pokemon = pokemon.child_pokemons.get()
     except Pokemon.DoesNotExist:
         child_pokemon = None
 
