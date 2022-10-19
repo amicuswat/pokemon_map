@@ -74,7 +74,7 @@ def show_pokemon(request, pokemon_id):
             request.build_absolute_uri(entity.pokemon.photo.url)
         )
 
-    pokemon_wiki = {
+    pokemon_serialized = {
         'title_ru': pokemon.title,
         'title_en': pokemon.title_en,
         'title_jp': pokemon.title_jp,
@@ -89,7 +89,7 @@ def show_pokemon(request, pokemon_id):
             'pokemon_id': pokemon.parent.id
         }
 
-        pokemon_wiki['previous_evolution'] = previous_evolution
+        pokemon_serialized['previous_evolution'] = previous_evolution
 
     if child_pokemon:
         next_evolution = {
@@ -98,8 +98,8 @@ def show_pokemon(request, pokemon_id):
             'pokemon_id': child_pokemon.id
         }
 
-        pokemon_wiki['next_evolution'] = next_evolution
+        pokemon_serialized['next_evolution'] = next_evolution
 
     return render(request, 'pokemon.html', context={
-        'map': folium_map._repr_html_(), 'pokemon': pokemon_wiki
+        'map': folium_map._repr_html_(), 'pokemon': pokemon_serialized
     })
