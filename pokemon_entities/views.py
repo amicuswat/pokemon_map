@@ -62,7 +62,7 @@ def show_pokemon(request, pokemon_id):
         return render(request, 'no_pokemon.html',
                       context={'message': message})
 
-    entities = pokemon.pokemon_entities.filter(appear_at__lte=localtime(),
+    entities = pokemon.entities.filter(appear_at__lte=localtime(),
                                             disappear_at__gte=localtime())
 
     try:
