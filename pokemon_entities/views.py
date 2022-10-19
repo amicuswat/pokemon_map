@@ -65,14 +65,14 @@ def show_pokemon(request, pokemon_id):
         child_pokemon = None
 
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
-    if entities:
-        for entity in entities:
-            add_pokemon(
-                folium_map,
-                entity.lat,
-                entity.lon,
-                request.build_absolute_uri(entity.pokemon.photo.url)
-            )
+
+    for entity in entities:
+        add_pokemon(
+            folium_map,
+            entity.lat,
+            entity.lon,
+            request.build_absolute_uri(entity.pokemon.photo.url)
+        )
 
     pokemon_wiki = {
         'title_ru': pokemon.title,
