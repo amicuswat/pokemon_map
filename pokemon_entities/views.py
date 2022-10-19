@@ -1,6 +1,6 @@
 import folium
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.utils.timezone import localtime
 from .models import PokemonEntity, Pokemon
 
@@ -54,13 +54,7 @@ def show_all_pokemons(request):
 
 
 def show_pokemon(request, pokemon_id):
-    try:
-        pokemon = Pokemon.objects.get(id=pokemon_id)
-    except Pokemon.DoesNotExist:
-        message = "Такого покемона не существует :("
-
-        return render(request, 'no_pokemon.html',
-                      context={'message': message})
+    pokemon = get_object_or_404(Pokemon, id=pokemon_id)
 
     entities = pokemon.entities.filter(appear_at__lte=localtime(),
                                             disappear_at__gte=localtime())
